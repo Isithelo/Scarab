@@ -1,0 +1,84 @@
+<div class="row">
+	<div class="col-md-4">
+	 
+<h3>Sishen Mine - Kumba Iron Ore</h3>
+<p>Road Condition Detail</p>
+	</div>
+	<div class="col-md-8">
+	<h3>Site Map</h3>
+	<p>Click and drag to change map zoom and location.</p>
+		<div id="map_canvas" style="height: 650px;width: 100%"></div>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+	
+
+
+	var map;
+var global_markers = [];    
+var markers = [
+	[37.09024, -95.712891, 'trialhead0'], 
+	[-14.235004, -51.92528, 'trialhead1'], 
+	[-38.416097, -63.616672, 'trialhead2'],
+
+[-27.728597760259387,22.978848089843723],
+[-27.733308047782497,22.977818121582004],
+[-27.739309570788787,22.982796301513645],
+[-27.725938637088433,22.98245297875974],
+[-27.73102890181997,22.981766333251926],
+[-27.728825682084267,22.987087835937473],
+[-27.723887269179087,22.97944890466306],
+[-27.73490342159605,22.979019751220676],
+[-27.74196836771788,22.98640119042966],
+[-27.7198603977005,22.979534735351535],
+[-27.725634733167194,22.975329031616184],
+[-27.74325975995599,22.992495169311496],
+];
+
+var infowindow = new google.maps.InfoWindow({});
+
+function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-27.746830, 22.992581);
+    var myOptions = {
+        zoom: 14,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.HYBRID
+    }
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    addMarker();
+}
+
+function addMarker() {
+    for (var i = 0; i < markers.length; i++) {
+        // obtain the attribues of each marker
+        var lat = parseFloat(markers[i][0]);
+        var lng = parseFloat(markers[i][1]);
+        var trailhead_name = markers[i][2];
+
+        var myLatlng = new google.maps.LatLng(lat, lng);
+
+        var contentString = "<html><body><div><p><h2>" + trailhead_name + "</h2></p></div></body></html>";
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+             icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+            map: map,
+            title: "Coordinates: " + lat + " , " + lng + " | Trailhead name: " + trailhead_name
+        });
+
+        marker['infowindow'] = contentString;
+
+        global_markers[i] = marker;
+
+        google.maps.event.addListener(global_markers[i], 'click', function() {
+            infowindow.setContent(this['infowindow']);
+            infowindow.open(map, this);
+        });
+    }
+}
+
+window.onload = initialize;
+</script>

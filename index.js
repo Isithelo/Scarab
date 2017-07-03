@@ -21,6 +21,7 @@ var HomeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var contactController = require('./controllers/contact');
 var userInterfaceController = require('./controllers/userinterface');
+var rcmController = require('./controllers/rcm');
 
 // Passport OAuth strategies
 require('./config/passport');
@@ -146,7 +147,11 @@ app.locals.repo = repo
 ////     ROUTING        //// 
 ///////////////////////////
 
-
+///////////////////////////
+////       RCM        //// 
+/////////////////////////
+app.get('/demo', rcmController.demo);
+ 
 
 /////////////////////////////////
 ////       TEMPALTES        //// 

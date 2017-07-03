@@ -2,8 +2,8 @@
   "name": "Scarab",
   "description": "",
   "sitename" : "Scarab",
-  "website" : "https://fraternate.herokuapp.com/",
-  "repo" : "https://github.com/Isithelo/Fraternate",
+  "website" : "https://scarab-rcm.herokuapp.com/",
+  "repo" : "https://github.com/Isithelo/Scarab",
   "scripts": {
   },
   "env": {
