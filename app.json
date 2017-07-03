@@ -1,0 +1,24 @@
+{
+  "name": "Scarab",
+  "description": "",
+  "sitename" : "Scarab",
+  "website" : "https://fraternate.herokuapp.com/",
+  "repo" : "https://github.com/Isithelo/Fraternate",
+  "scripts": {
+  },
+  "env": {
+    "MONGODB_URI": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "mongolab"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

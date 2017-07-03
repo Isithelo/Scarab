@@ -1,0 +1,127 @@
+<script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.css" />
+
+<div class="row" style="padding-top: 35px">
+  <div class="col-md-4">
+    <div class="media">
+      <div class="media-left" >  
+        <a href="#">
+          {{#if userload.picture}}
+           <div id="googlepic" style="min-width: 100%"></div>
+          {{else}}
+          <img src="{{userload.gravatar}}" class="media-object">
+          {{/if}}
+        </a>
+      </div>
+    </div>
+    <h1>{{userload.name}}  <small>{{userload.username}}</small></h1>
+    <p>{{userload.bio}}</p>
+    {{#if userload.company}}
+    <div class="row">
+      <div class="col-sm-2" style="text-align: center;">
+        <i class="fa fa-users" aria-hidden="true"></i>
+      </div>
+      <div class="col-sm-8">
+        {{dotdotdot userload.company}}
+      </div>
+    </div>
+    {{/if}}
+    {{#if userload.location}}
+    <div class="row">
+      <div class="col-sm-2" style="text-align: center;">
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+      </div>
+      <div class="col-sm-8">
+        {{userload.location}}
+      </div>
+    </div>
+    {{/if}}
+    {{#if userload.email}}
+    <div class="row">
+      <div class="col-sm-2" style="text-align: center;">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+      </div>
+      <div class="col-sm-8">
+        <a href="mailto:{{userload.email}}">{{userload.email}}</a>
+      </div>
+    </div>
+    {{/if}}
+    {{#if userload.website}}
+    <div class="row">
+      <div class="col-sm-2" style="text-align: center;">
+        <i class="fa fa-link" aria-hidden="true"></i>
+      </div>
+      <div class="col-sm-8">
+        <a href="http://{{userload.website}}" target="_blank">{{userload.website}}</a>
+      </div>
+    </div>
+    {{/if}}
+    {{#if userload.permission}}
+    <div class="row">
+      <div class="col-sm-2" style="text-align: center;">
+        <i class="fa fa-key" aria-hidden="true"></i>
+      </div>
+      <div class="col-sm-8">
+        {{userload.permission}}
+      </div>
+    </div>
+    {{/if}}
+    <hr>
+    {{#if organizations}}
+    <h3>Organizations</h3>
+    <div class="row">
+      {{#each organizations}}
+      <div class="col-md-2">
+        <a href="/organizations/{{this.entry.name}}" title="{{this.entry.name}}" >
+          <img src="{{this.entry.picture}}" class="media-object" style="max-width: 45px;border-radius: 1px;border: 1px;border-color: #d8d8d8;border-style: solid;">
+        </a>
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <div  class="row" style="text-align: center">
+      <a class="btn btn-default btn-sm" href="">Create an Organization</a>
+    </div>
+    {{/if}}
+  </div>
+  <div class="col-md-8">
+    <h3>Custom Site Details</h3>
+    <div style="border-width: 1px; border-style: dashed; border-color: grey;padding:155px;text-align: center;border-radius: 5px;"><strong> Heads up!</strong> This is where your custom content and user interaction detail will be added. 
+    </div>
+    <p></p>  <h3>User Contributions</h3>
+    <div class="panel panel-default">
+      <div class="panel-body">
+       <div id="cal-heatmap"></div>
+       <p>To get more details on the user contributions map visit : 
+        <a href="http://cal-heatmap.com/" target="_blank">Cal-heatmap</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+<script type="text/javascript">
+
+
+  var username = JSON.stringify('{{userload.username}}')
+  var user = JSON.stringify('{{user.username}}')
+  var text = '{{userload.picture}}'
+  text =text.replace("sz&#x3D;50", "sz&#x3D;200");
+  $('#googlepic').html('<img src="'+text+'" style="max-width: 100%" class="media-object">')
+
+  var cal = new CalHeatMap();
+  cal.init({
+
+    domain: "day",
+    range: 12,
+    legendVerticalPosition: "center",
+    legendOrientation: "vertical",
+    legendMargin: [0, 10, 0, 0]
+  });
+
+</script>
+
