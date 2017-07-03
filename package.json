@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "My app description",
   "scripts": {
-    "deploy": "npm test && git push heroku master",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "async": "^1.5.2",
